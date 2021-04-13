@@ -17,7 +17,7 @@ class StateModel {
         this.listeners = [];
         this.state = state;
     }
-    on(rawListener) {
+    onStateChange(rawListener) {
         const listener = (...args) => rawListener(...args);
         this.listeners.push(listener);
         return () => {
@@ -35,19 +35,24 @@ function useForceUpdate() {
 }
 function useModel(model) {
     const forceUpdate = useForceUpdate();
-    react.useEffect(() => model.on(forceUpdate), [model]);
+    react.useEffect(() => model.onStateChange(forceUpdate), [model]);
     return model;
 }
 function useLocalModel(creator, deps = []) {
     return useModel(react.useMemo(creator, deps));
 }
+function getContextByModelClass(ModelClass) {
+    if (!Object.prototype.hasOwnProperty.apply(ModelClass, ['__Context__'])) {
+        ModelClass.__Context__ = react.createContext(null);
+    }
+    return ModelClass.__Context__;
+}
 function useModelContext(ModelClass) {
-    const ModelContext = ModelClass.getOwnPropertyNames('__Context__');
+    const ModelContext = getContextByModelClass(ModelClass);
     return react.useContext(ModelContext);
 }
 function useModelProvider(ModelClass) {
-    const ModelContext = ModelClass.getOwnPropertyNames('__Context__') || react.createContext(null);
-    ModelClass.__Context__ = ModelContext;
+    const ModelContext = getContextByModelClass(ModelClass);
     return ModelContext.Provider;
 }
 

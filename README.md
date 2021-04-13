@@ -1,19 +1,114 @@
-# npm-package-template
-This is a template for a npm package.  
-Current `src` has trim and isOdd/isEven functionality.  
+# StateModel
 
-## How to run locally
+## 介绍
+为 React 设计的简易模型，帮助 React 用户进行模型驱动设计。
 
-```zsh
-$ yarn
+## 安装
 
-# lint
-$ yarn lint
+使用 npm 安装
 
-# test
-$ yarn test
+```Bash
+npm install --save @bramblex/state-model
 ```
 
-## Circle CI
-image: `cimg/node:15.1`   
-Circle CI image is using `npm` so need `package-lock.json`.
+使用 yarn 安装
+
+```
+yarn add @bramblex/state-model
+```
+
+## 用法
+
+### 声明一个模型
+
+```TS
+import { 
+    StateModel, 
+    useModel, 
+    useLocalModel, 
+    useModelProvider, 
+    useModelContext 
+} from '@brambles/state-model'
+
+class Counter extends StateModel<{ count: number }> {
+    constructor() {
+        super({ count: 0 })
+    }
+
+    increase() {
+        this.setState({ count: this.state.count + 1 });
+    }
+
+
+    decrease() {
+        this.setState({ count: this.state.count - 1 });
+    }
+}
+```
+
+### 全局使用
+```TSX
+const counter = new Counter();
+
+function App() {
+    useModel(counter);
+
+    return (
+        <div>
+            <div>{model.state.count}</div>
+            <div>
+                <button onClick={() => counter.increase()}>+</button>
+                <button onClick={() => counter.decrease()}>-</button>
+            </div>
+        </div>
+    );
+}
+```
+
+### 局部使用
+```TSX
+function App() {
+    const counter = useLocalModel(() => new Counter(), []);
+
+    return (
+        <div>
+            <div>{model.state.count}</div>
+            <div>
+                <button onClick={() => counter.increase()}>+</button>
+                <button onClick={() => counter.decrease()}>-</button>
+            </div>
+        </div>
+    );
+}
+```
+
+
+### 局部使用 & Context
+```TSX
+function Increase() {
+    const counter = useModelContext(Counter);
+    return <button onClick={() => counter.increase()}>+</button>
+}
+
+function Decrease() {
+    const counter = useModelContext(Counter);
+    return <button onClick={() => counter.decrease()}>-</button>
+}
+
+function App() {
+    const counter = useLocalModel(() => new Counter(), []);
+    const Provider = useModelProvider(Counter);
+
+    return (
+        <Provider value={counter}>
+            <div>
+                <div>{model.state.count}</div>
+                <div>
+                    <Increase />
+                    <Decrease />
+                </div>
+            </div>
+        </Provider>
+    );
+}
+```

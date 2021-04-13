@@ -1,13 +1,17 @@
 {
   "name": "@bramblex/state-model",
   "version": "0.0.1",
-  "description": "npm package template",
+  "description": "Simple model for react",
+  "homepage": "https://github.com/bramblex/state-model",
   "main": "dist/state-model.cjs.js",
   "module": "dist/state-model.es.js",
   "browser": "dist/state-model.js",
   "types": "dist/state-model.d.ts",
   "author": "bramblex<qjnight@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist/*"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.13.15",
@@ -17,11 +21,12 @@
     "@rollup/plugin-node-resolve": "^11.1.0",
     "@rollup/plugin-typescript": "^8.1.0",
     "@types/jest": "^26.0.22",
+    "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
     "babel-jest": "^26.6.3",
     "camelcase": "^6.2.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.25.0",
     "jest": "^26.6.3",
     "react": "^17.0.2",
     "react-test-renderer": "^17.0.2",
@@ -30,36 +35,11 @@
     "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^26.4.4",
     "tslib": "^2.1.0",
-    "typescript": "^4.1.3",
-    "@types/react-test-renderer": "^17.0.1"
+    "typescript": "^4.1.3"
   },
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint --fix 'src/**/*.ts'",
-    "test": "jest",
-    "demo": "http-server example -o"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!variables/.*)"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.json"
-      }
-    },
-    "testMatch": [
-      "**/test/**/*.test.tsx",
-      "**/test/**/*.test.ts"
-    ]
+    "lint": "eslint --fix 'src/**/*.ts'"
   },
   "dependencies": {
     "@types/react": "^17.0.3"

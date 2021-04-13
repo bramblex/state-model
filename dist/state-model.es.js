@@ -6,14 +6,14 @@
    * Released under the MIT license.
    */
 
-import { useEffect, useMemo, useContext, createContext, useState } from 'react';
+import { useEffect, useMemo, useContext, useState, createContext } from 'react';
 
 class StateModel {
     constructor(state) {
         this.listeners = [];
         this.state = state;
     }
-    on(rawListener) {
+    onStateChange(rawListener) {
         const listener = (...args) => rawListener(...args);
         this.listeners.push(listener);
         return () => {
@@ -31,19 +31,24 @@ function useForceUpdate() {
 }
 function useModel(model) {
     const forceUpdate = useForceUpdate();
-    useEffect(() => model.on(forceUpdate), [model]);
+    useEffect(() => model.onStateChange(forceUpdate), [model]);
     return model;
 }
 function useLocalModel(creator, deps = []) {
     return useModel(useMemo(creator, deps));
 }
+function getContextByModelClass(ModelClass) {
+    if (!Object.prototype.hasOwnProperty.apply(ModelClass, ['__Context__'])) {
+        ModelClass.__Context__ = createContext(null);
+    }
+    return ModelClass.__Context__;
+}
 function useModelContext(ModelClass) {
-    const ModelContext = ModelClass.getOwnPropertyNames('__Context__');
+    const ModelContext = getContextByModelClass(ModelClass);
     return useContext(ModelContext);
 }
 function useModelProvider(ModelClass) {
-    const ModelContext = ModelClass.getOwnPropertyNames('__Context__') || createContext(null);
-    ModelClass.__Context__ = ModelContext;
+    const ModelContext = getContextByModelClass(ModelClass);
     return ModelContext.Provider;
 }
 
