@@ -95,14 +95,22 @@ function Decrease() {
     return <button onClick={() => counter.decrease()}>-</button>
 }
 
+function Count() {
+    const counter = useModelContext(Counter);
+    useModel(counter);
+    return <div>{model.state.count}</div>
+}
+
 function App() {
     const counter = useLocalModel(() => new Counter(), []);
+    // 等效于 
+    // const counter = useModel(useMemo(() => new Counter(), []));
     const Provider = useModelProvider(Counter);
 
     return (
         <Provider value={counter}>
             <div>
-                <div>{model.state.count}</div>
+                <Count />
                 <div>
                     <Increase />
                     <Decrease />
