@@ -5,7 +5,6 @@
   "homepage": "https://github.com/bramblex/state-model",
   "main": "dist/state-model.cjs.js",
   "module": "dist/state-model.es.js",
-  "browser": "dist/state-model.js",
   "types": "dist/state-model.d.ts",
   "author": "bramblex<qjnight@gmail.com>",
   "license": "MIT",
