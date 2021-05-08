@@ -24,9 +24,10 @@ class StateModel {
             this.listeners = this.listeners.filter(l => l !== listener);
         };
     }
-    setState(newState) {
-        this.state = newState;
-        this.listeners.forEach(l => l(this));
+    setState(state) {
+        const prev = this.state;
+        this.state = state;
+        this.listeners.forEach(l => l(state, prev, this));
     }
 }
 function useForceUpdate() {

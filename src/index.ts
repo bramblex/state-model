@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext, Context, useMemo, Provider } from 'react';
 
-type Listener<State> = (model: StateModel<State>) => void;
+type Listener<State> = (state: State, prev: State, model: StateModel<State>) => void;
 
 type GetStateByModel<T> = T extends StateModel<infer P> ? P : never;
 
@@ -21,9 +21,10 @@ export class StateModel<State> {
     };
   }
 
-  setState(newState: State): void {
-    this.state = newState;
-    this.listeners.forEach(l => l(this));
+  setState(state: State): void {
+    const prev = this.state;
+    this.state = state;
+    this.listeners.forEach(l => l(state, prev, this));
   }
 }
 

@@ -21,13 +21,15 @@ const banner = `
    */
 `;
 
+const base = `dist/${packageName}.js`;
+
 export default [
   {
     input: inputFileName,
     output: [
       {
         name: moduleName,
-        file: pkg.browser,
+        file: base,
         format: "iife",
         banner,
         globals: {
@@ -36,7 +38,7 @@ export default [
       },
       {
         name: moduleName,
-        file: pkg.browser.replace(".js", ".min.js"),
+        file: base.replace(".js", ".min.js"),
         format: "iife",
         banner,
         plugins: [terser()],
@@ -126,7 +128,7 @@ export default [
     input: inputFileName,
     output: [
       {
-        file: pkg.browser.replace(".js", ".d.ts"),
+        file: base.replace(".js", ".d.ts"),
         format: "cjs",
       },
     ],
