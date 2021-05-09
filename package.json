@@ -1,6 +1,6 @@
 {
   "name": "@bramblex/state-model",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple model for react",
   "homepage": "https://github.com/bramblex/state-model",
   "main": "dist/state-model.cjs.js",
