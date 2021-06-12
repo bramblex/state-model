@@ -1,6 +1,6 @@
 {
   "name": "@bramblex/state-model",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple model",
   "homepage": "https://github.com/bramblex/state-model",
   "main": "dist/state-model.cjs.js",
@@ -35,7 +35,5 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --fix 'src/**/*.ts'"
-  },
-  "dependencies": {
   }
 }

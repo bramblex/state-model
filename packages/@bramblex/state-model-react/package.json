@@ -1,6 +1,6 @@
 {
   "name": "@bramblex/state-model-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple model",
   "homepage": "https://github.com/bramblex/state-model",
   "main": "dist/state-model-react.cjs.js",
@@ -41,7 +41,7 @@
     "lint": "eslint --fix 'src/**/*.ts'"
   },
   "dependencies": {
-    "@bramblex/state-model": "1.0.0",
+    "@bramblex/state-model": "^1.0.1",
     "@types/react": "^17.0.3"
   }
 }
