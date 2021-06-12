@@ -2,7 +2,7 @@
   /**
    * @license
    * author: bramblex<qjnight@gmail.com>
-   * state-model.js v0.0.3
+   * state-model-react.js v1.0.0
    * Released under the MIT license.
    */
 
@@ -12,24 +12,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var react = require('react');
 
-class StateModel {
-    constructor(state) {
-        this.listeners = [];
-        this.state = state;
-    }
-    onStateChange(rawListener) {
-        const listener = (...args) => rawListener(...args);
-        this.listeners.push(listener);
-        return () => {
-            this.listeners = this.listeners.filter(l => l !== listener);
-        };
-    }
-    setState(state) {
-        const prev = this.state;
-        this.state = state;
-        this.listeners.forEach(l => l(state, prev, this));
-    }
-}
 function useForceUpdate() {
     const [, setState] = react.useState(0);
     return () => setState((n) => n + 1);
@@ -57,7 +39,6 @@ function useModelProvider(ModelClass) {
     return ModelContext.Provider;
 }
 
-exports.StateModel = StateModel;
 exports.useLocalModel = useLocalModel;
 exports.useModel = useModel;
 exports.useModelContext = useModelContext;
