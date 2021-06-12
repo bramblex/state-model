@@ -43,5 +43,9 @@
   "dependencies": {
     "@bramblex/state-model": "^1.0.1",
     "@types/react": "^17.0.3"
+  },
+  "gitHead": "d07bbd6f87bac044201cf349a0bcfde0789fc244",
+  "publishConfig": {
+    "access": "public"
   }
 }

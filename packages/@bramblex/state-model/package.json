@@ -35,5 +35,9 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --fix 'src/**/*.ts'"
+  },
+  "gitHead": "d07bbd6f87bac044201cf349a0bcfde0789fc244",
+  "publishConfig": {
+    "access": "public"
   }
 }
