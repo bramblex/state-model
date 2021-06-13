@@ -6,6 +6,7 @@
   },
   "workspaces": [
     "packages/@bramblex/state-model",
-    "packages/@bramblex/state-model-react"
+    "packages/@bramblex/state-model-react",
+    "packages/@bramblex/state-model-example"
   ]
 }
