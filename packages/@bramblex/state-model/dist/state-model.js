@@ -2,7 +2,7 @@
   /**
    * @license
    * author: bramblex<qjnight@gmail.com>
-   * state-model.js v1.0.1
+   * state-model.js v1.0.2
    * Released under the MIT license.
    */
 
@@ -10,9 +10,8 @@ var StateModel = (function (exports) {
     'use strict';
 
     class StateModel {
-        state;
-        listeners = [];
         constructor(state) {
+            this.listeners = [];
             this.state = state;
         }
         onStateChange(rawListener) {

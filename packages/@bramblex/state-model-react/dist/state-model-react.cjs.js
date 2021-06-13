@@ -2,7 +2,7 @@
   /**
    * @license
    * author: bramblex<qjnight@gmail.com>
-   * state-model-react.js v1.0.1
+   * state-model-react.js v1.0.2
    * Released under the MIT license.
    */
 
