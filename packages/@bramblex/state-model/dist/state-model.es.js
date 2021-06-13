@@ -2,7 +2,7 @@
   /**
    * @license
    * author: bramblex<qjnight@gmail.com>
-   * state-model.js v1.0.0
+   * state-model.js v1.0.1
    * Released under the MIT license.
    */
 
