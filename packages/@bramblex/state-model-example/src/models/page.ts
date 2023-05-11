@@ -55,6 +55,7 @@ export class PageModel extends StateModel<PageState> {
             this.setState({
                 ...this.state,
                 pending: false,
+                // @ts-ignore
                 error: err,
                 errorMessage: '页面加载错误',
             });
