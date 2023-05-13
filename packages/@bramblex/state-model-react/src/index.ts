@@ -17,7 +17,7 @@ export function useModel<Model extends StateModelType<GetStateByModel<Model>>>(
   return model;
 }
 export const useModelSync = <Model>(model: StateModel<Model>) => {
-  return useSyncExternalStore(model.onStateChange.bind(model), () => model.state);
+  return useSyncExternalStore(model.onStateChange.bind(model), () => model);
 };
 
 export function useLocalModel<Model extends StateModelType<GetStateByModel<Model>>>(
