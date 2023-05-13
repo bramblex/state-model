@@ -1,5 +1,8 @@
 import { useState, useEffect, createContext, useContext, Context, useMemo, Provider } from 'react';
-import { StateModelType, GetStateByModel } from '@bramblex/state-model';
+import { StateModelType, GetStateByModel, StateModel } from '@bramblex/state-model';
+import { useSyncExternalStore as _useSyncExternalStore } from 'use-sync-external-store/shim';
+
+export const useSyncExternalStore = _useSyncExternalStore
 
 function useForceUpdate() {
   const [, setState] = useState(0);
@@ -13,6 +16,9 @@ export function useModel<Model extends StateModelType<GetStateByModel<Model>>>(
   useEffect(() => model.onStateChange(forceUpdate), [model]);
   return model;
 }
+export const useModelSync = <Model>(model: StateModel<Model>) => {
+  return useSyncExternalStore(model.onStateChange.bind(model), () => model);
+};
 
 export function useLocalModel<Model extends StateModelType<GetStateByModel<Model>>>(
   creator: () => Model, deps: unknown[] = []
