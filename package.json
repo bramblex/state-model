@@ -1,12 +1,7 @@
 {
-  "name": "root",
+  "name": "state-model",
   "private": true,
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  },
   "workspaces": [
-    "packages/@bramblex/state-model",
-    "packages/@bramblex/state-model-react",
-    "packages/@bramblex/state-model-example"
+    "packages/*"
   ]
 }
