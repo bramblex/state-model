@@ -17,7 +17,7 @@ export function useModel<Model extends StateModel<BaseState>>(
 
 export function useLocalModel<Model extends StateModel<BaseState>>(
   creator: () => Model
-) {
+): Model {
   const model = useMemo(creator, []);
   useModel(model);
   return model;
