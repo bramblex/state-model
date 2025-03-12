@@ -7,10 +7,9 @@ type ToRefs<T extends BaseState> = {
   [key in keyof T]: Ref<T[key]>;
 };
 
-export function useModel<
-  Model extends StateModel<State>,
-  State extends BaseState
->(model: Model): ToRefs<State> {
+export function useModel<State extends BaseState>(
+  model: StateModel<State>
+): ToRefs<State> {
   const triggers = {} as Record<string, () => void>;
 
   const refs = new Proxy(model.state, {
