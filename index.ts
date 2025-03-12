@@ -21,7 +21,7 @@ export class StateModel<
     new Map();
 
   // 生成匿名 ID
-  private static __anonymousId__(constructor: Function) {
+  private static __anonymousId__(constructor: Function): Symbol {
     return Symbol(constructor.name);
   }
 
@@ -36,7 +36,7 @@ export class StateModel<
     constructor: StateModelClass,
     id: BaseId,
     instance: Model
-  ) {
+  ): void {
     let instanceMap = this.__instanceMap__.get(constructor);
     if (!instanceMap) {
       instanceMap = new Map();
@@ -101,7 +101,7 @@ export class StateModel<
     return instance;
   }
 
-  update(_state: Partial<State> | ((State: State) => Partial<State>)) {
+  update(_state: Partial<State> | ((State: State) => Partial<State>)): void {
     const state = typeof _state === "function" ? _state(this.state) : _state;
     // 更新状态
     (this as { state: State }).state = {
@@ -140,7 +140,7 @@ export class StateModel<
       ));
   }
 
-  destroy() {
+  destroy(): boolean {
     return StateModel.deleteInstance(this.__ModelClass__, this.id);
   }
 }
